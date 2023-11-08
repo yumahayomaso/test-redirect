@@ -1,9 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="refresh" content="0;url=digitalbank://email_confirmation?code=12345&firstConfirmation=true">
+    <title>Redirect Page</title>
+    <script>
+        // Function to get the query parameter from the URL
+        function getQueryParam(parameter) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(parameter);
+        }
+
+        // Function to perform the redirect
+        function redirect() {
+            const uri = getQueryParam("uri");
+
+            if (uri) {
+                // Redirect to the specified URI
+                window.location.href = uri;
+            } else {
+                // If the 'uri' parameter is not found, display an error message
+                document.getElementById("error-message").textContent = "URI parameter not found in the query string.";
+            }
+        }
+    </script>
 </head>
 <body>
-    <p>If you're not redirected, you can click <a href="digitalbank://email_confirmation?code=12345&firstConfirmation=true">here</a> to continue.</p>
+    <h1>Redirecting...</h1>
+    <p id="error-message"></p>
+
+    <script>
+        // Call the redirect function when the page loads
+        redirect();
+    </script>
 </body>
 </html>
